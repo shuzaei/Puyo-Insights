@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Puyo Puyo Gamefield</title>
+  <style>
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(6, 40px);
+      grid-template-rows: repeat(13, 40px);
+      gap: 2px;
+    }
+    .cell {
+      background-color: #f5f5f5;
+      border: 1px solid #ddd;
+    }
+    .none {
+      background-color: #FFFFFF;
+      border-radius: 0;
+    }
+    .color-1 {
+      background-color: hsl(0, 100%, 50%);
+      border-radius: 25%;
+    }
+    .color-2 {
+      background-color: hsl(50, 100%, 50%);
+      border-radius: 25%;
+    }
+    .color-3 {
+      background-color: hsl(120, 70%, 40%);
+      border-radius: 25%;
+    }
+    .color-4 {
+      background-color: hsl(216, 100%, 50%);
+      border-radius: 25%;
+    }
+    .color-5 {
+      background-color: hsl(288, 100%, 50%);
+      border-radius: 25%;
+    }
+    .ojama {
+      background-color: #BDBDBD;
+      border-radius: 25%;
+    }
+    .color-palette {
+      display: flex;
+      margin-top: 10px;
+    }
+    .color-option {
+      width: 40px;
+      height: 40px;
+      margin-right: 5px;
+      border-radius: 25%;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .color-option:hover {
+      transform: scale(1.1);
+    }
+    .selected {
+      border: 2px solid #000;
+    }
+    .connected-top {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+    .connected-right {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    .connected-bottom {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    .connected-left {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="color-palette"></div>
+
+  <script>
+    const grid = document.querySelector('.grid');
+    const colorPalette = document.querySelector('.color-palette');
+    const width = 6;
+    const height = 13;
+    let gamefield = [];
+    const colors = ['none', 'color-1', 'color-2', 'color-3', 'color-4', 'color-5', 'ojama'];
+    let currentColor = 'color-1';
+
+    // Initialize the gamefield
+    function initializeGamefield() {
+      for (let i = 0; i < height; i++) {
+        gamefield[i] = [];
+        for (let j = 0; j < width; j++) {
+          const cell = document.createElement('div');
+          cell.classList.add('cell', 'none');
+          cell.setAttribute('data-row', i);
+          cell.setAttribute('data-col', j);
+          cell.addEventListener('click', placePuyo);
+          grid.appendChild(cell);
+          gamefield[i][j] = 'none';
+        }
+      }
+    }
+
+    // Initialize the color palette
+    function initializeColorPalette() {
+      colors.forEach(color => {
+        const colorOption = document.createElement('div');
+        colorOption.classList.add('color-option', color);
+        colorOption.addEventListener('click', () => {
+          currentColor = color;
+          document.querySelector('.selected').classList.remove('selected');
+          colorOption.classList.add('selected');
+        });
+        colorPalette.appendChild(colorOption);
+      });
+      document.querySelector('.color-option.color-1').classList.add('selected');
+    }
+
+    // Place a Puyo on the gamefield
+    function placePuyo(event) {
+      const row = parseInt(event.target.getAttribute('data-row'));
+      const col = parseInt(event.target.getAttribute('data-col'));
+
+      gamefield[row][col] = currentColor;
+      event.target.className = 'cell ' + currentColor;
+      updateAllConnections();
+    }
+
+    // Update connections of all puyos
+    function updateAllConnections() {
+      for (let row = 0; row < height; row++) {
+        for (let col = 0; col < width; col++) {
+          updateConnections(row, col);
+        }
+      }
+    }
+
+    // Update connections of a single puyo
+    function updateConnections(row, col) {
+      const color = gamefield[row][col];
+      const directions = [
+        [-1, 0, 'connected-top'],    // Up
+        [0, 1, 'connected-right'],   // Right
+        [1, 0, 'connected-bottom'],  // Down
+        [0, -1, 'connected-left']    // Left
+      ];
+
+      const cell = grid.querySelector(`[data-row="${row}"][data-col="${col}"]`);
+
+      if (color !== 'none' && color !== 'ojama') {
+        directions.forEach(([deltaRow, deltaCol, connectedClass]) => {
+          const newRow = row + deltaRow;
+          const newCol = col + deltaCol;
+
+          if (
+            newRow >= 0 && newRow < height &&
+            newCol >= 0 && newCol < width &&
+            gamefield[newRow][newCol] === color
+          ) {
+            cell.classList.add(connectedClass);
+          } else {
+            cell.classList.remove(connectedClass);
+          }
+        });
+      } else {
+        directions.forEach(([, , connectedClass]) => {
+          cell.classList.remove(connectedClass);
+        });
+      }
+    }
+
+    // Start the game
+    initializeGamefield();
+    initializeColorPalette();
+  </script>
+</body>
+</html>
