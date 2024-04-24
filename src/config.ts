@@ -7,8 +7,8 @@ import type {
 import { LinkPreset } from './types/config'
 
 export const siteConfig: SiteConfig = {
-  title: 'Fuwari',
-  subtitle: 'Demo Site',
+  title: 'Puyo Insights',
+  subtitle: 'Broad explanations and cutting-edge insights on Puyo',
   lang: 'en',
   themeHue: 250,
   banner: {
@@ -31,31 +31,36 @@ export const navBarConfig: NavBarConfig = {
     LinkPreset.About,
     {
       name: 'GitHub',
-      url: 'https://github.com/saicaca/fuwari',
+      url: 'https://github.com/shuzaei/Puyo-Insights',
       external: true,
     },
   ],
 }
 
 export const profileConfig: ProfileConfig = {
-  avatar: 'assets/images/demo-avatar.png',
-  name: 'Lorem Ipsum',
-  bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  avatar: 'assets/images/MikoPHappy.png',
+  name: 'MikoPHappy',
+  bio: 'Puyo Master Drop-Out',
   links: [
     {
       name: 'Twitter',
       icon: 'fa6-brands:twitter',
-      url: 'https://twitter.com',
+      url: 'https://twitter.com/MikoPHappy',
     },
     {
       name: 'Steam',
       icon: 'fa6-brands:steam',
-      url: 'https://store.steampowered.com',
+      url: 'https://steamcommunity.com/id/35pH',
+    },
+    {
+      name: 'Soundcloud',
+      icon: 'fa6-brands:soundcloud',
+      url: 'https://soundcloud.com/shuzaei',
     },
     {
       name: 'GitHub',
       icon: 'fa6-brands:github',
-      url: 'https://github.com/saicaca/fuwari',
+      url: 'https://github.com/shuzaei',
     },
   ],
 }
