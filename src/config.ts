@@ -45,7 +45,7 @@ export const profileConfig: ProfileConfig = {
     {
       name: 'Twitter',
       icon: 'fa6-brands:twitter',
-      url: 'https://twitter.com/MikoPHappy',
+      url: 'https://twitter.com/35ph_',
     },
     {
       name: 'Steam',

@@ -25,7 +25,7 @@ const oklchToHex = (str) => {
 // https://astro.build/config
 export default defineConfig({
   site: "https://shuzaei.github.io/",
-  base: "puyo-insights/",
+  base: "/",
   integrations: [
     tailwind(),
     swup({
