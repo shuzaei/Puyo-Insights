@@ -12,60 +12,62 @@ import svelte from "@astrojs/svelte";
 import swup from '@swup/astro';
 import sitemap from '@astrojs/sitemap';
 import vercel from "@astrojs/vercel/serverless";
+
 const oklchToHex = str => {
   const DEFAULT_HUE = 250;
   const regex = /-?\d+(\.\d+)?/g;
   const matches = str.string.match(regex);
   const lch = [matches[0], matches[1], DEFAULT_HUE];
-  return new Color("oklch", lch).to("srgb").toString({
-    format: "hex"
-  });
+  return new Color("oklch", lch).to("srgb").toString({ format: "hex" });
 };
-
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://puyo-insights.vercel.app/",
   base: "/",
-  integrations: [tailwind(), swup({
-    theme: false,
-    animationClass: 'transition-',
-    containers: ['main'],
-    smoothScrolling: true,
-    cache: true,
-    preload: true,
-    accessibility: true,
-    globalInstance: true
-  }), icon({
-    include: {
-      "material-symbols": ["*"],
-      "fa6-brands": ["*"],
-      "fa6-regular": ["*"],
-      "fa6-solid": ["*"]
-    }
-  }), Compress({
-    Image: false
-  }), svelte(), sitemap()],
+  integrations: [
+    tailwind(),
+    swup({
+      theme: false,
+      animationClass: 'transition-',
+      containers: ['main'],
+      smoothScrolling: true,
+      cache: true,
+      preload: true,
+      accessibility: true,
+      globalInstance: true
+    }),
+    icon({
+      include: {
+        "material-symbols": ["*"],
+        "fa6-brands": ["*"],
+        "fa6-regular": ["*"],
+        "fa6-solid": ["*"]
+      }
+    }),
+    Compress({ Image: false }),
+    svelte(),
+    sitemap()
+  ],
   markdown: {
     remarkPlugins: [remarkMath, remarkReadingTime],
-    rehypePlugins: [rehypeKatex, rehypeSlug, [rehypeAutolinkHeadings, {
-      behavior: "append",
-      properties: {
-        className: ["anchor"]
-      },
-      content: {
-        type: "element",
-        tagName: "span",
-        properties: {
-          className: ["anchor-icon"],
-          'data-pagefind-ignore': true
-        },
-        children: [{
-          type: "text",
-          value: "#"
-        }]
-      }
-    }]]
+    rehypePlugins: [
+      rehypeKatex,
+      rehypeSlug,
+      [
+        rehypeAutolinkHeadings,
+        {
+          behavior: "append",
+          properties: { className: ["anchor"] },
+          content: {
+            type: "element",
+            tagName: "span",
+            properties: { className: ["anchor-icon"], 'data-pagefind-ignore': true },
+            children: [{ type: "text", value: "#" }]
+          }
+        }
+      ]
+    ]
   },
   vite: {
     css: {
@@ -78,6 +80,7 @@ export default defineConfig({
       }
     }
   },
-  output: "server",
-  adapter: vercel()
+  output: 'static',
+//  output: 'server',
+//  adapter: vercel()
 });

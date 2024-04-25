@@ -1,3 +1,0 @@
-pnpm build
-pnpm preview
-
