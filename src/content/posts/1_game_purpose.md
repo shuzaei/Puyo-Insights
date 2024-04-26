@@ -40,7 +40,7 @@ Because of its imperfect information, we cannot determine the optimal strategy f
 
 ## How to win the game
 
-Again, there are several ways to win the game, but there is only one way in the ideal situation. In a perfect game, especially for this game is non-zero-sum, we can say that if the sum of the utility (= amount of garbage Puyos sent to the opponent) of us surpasses the sum of the utility of the opponent by the left space in row-3 in the opponent's field, we can win the game. The amount of garbage Puyos sent to the opponent is determined by the chain length and the number of chains that we clear in a sequence. Thus, they are both important to have a chain with a maximum length and to have multiple chains to respond to the opponent's moves.
+Again, there are several ways to win the game, but there is only one way in the ideal situation. In a perfect game, especially for this game is non-zero-sum, we can say that if the sum of the utility (= amount of garbage Puyos sent to the opponent) of us surpasses the sum of the utility of the opponent by the left space in column-3 in the opponent's field, we can win the game. The amount of garbage Puyos sent to the opponent is determined by the chain length and the number of chains that we clear in a sequence. Thus, they are both important to have a chain with a maximum length and to have multiple chains to respond to the opponent's moves.
 
 ## How to measure the strength of a player
 
