@@ -43,9 +43,9 @@ When the chain finishes, the garbage Puyos are calculated based on the point sys
 
 There are many ways to create chains in Puyo. Also, it is important not to consider there is only one way to trigger a chain. Here are some examples of how to create chains:
 
-![Creating Chains](/src/assets/images/1_chain_01.png)
-![Creating Chains](/src/assets/images/1_chain_02.png)
-![Creating Chains](/src/assets/images/1_chain_03.png)
+![Creating Chains](src/assets/images/1_chain_01.png)
+![Creating Chains](src/assets/images/1_chain_02.png)
+![Creating Chains](src/assets/images/1_chain_03.png)
 
 Let's consider the third example. We can see that there is a GTR left down in the field. We can trigger this chain by putting a red puyo on column 4 after we put a red puyo on column 2. Then we get a 10-chain. However, if we put a red puyo on column 6, we can immediately trigger a 7-chain. It is less unusual that things like this happen, but it is important to consider all possibilities when creating chains. Though it is also important to create chains with a high flexibility, the most important thing is to think about how we can extend the chain in many ways.
 
