@@ -12,12 +12,12 @@ draft: false
 
 ## What is a Chain?
 
-In Puyo, 4 or more connected Puyos of the same color are cleared at the same time. After the Puyos are cleared, the Puyos above the cleared Puyos fall down to fill the empty spaces. If the same condition is met again, the chain continues.
+In Puyo, 4 or more connected puyos of the same color are cleared at the same time. After the puyos are cleared, the puyos above the cleared puyos fall down to fill the empty spaces. If the same condition is met again, the chain continues.
 
-When the chain finishes, the garbage Puyos are calculated based on the point system. Here is the point system for the garbage Puyos:
+When the chain finishes, the garbage puyos are calculated based on the point system. Here is the point system for the garbage puyos:
 
-- Falling Bonus: 1 point for each Puyo that manually falls down by 1 cell
-- Chain Bonus: max((the number of all Puyos cleared in a chain) * (A + B + C) * 10, 40)
+- Falling Bonus: 1 point for each puyo that manually falls down by 1 cell
+- Chain Bonus: max((the number of all puyos cleared in a chain) * (A + B + C) * 10, 40)
   - A = chain length bonus:
     | n | chain length bonus |
     |---|---------------------|
@@ -36,7 +36,7 @@ When the chain finishes, the garbage Puyos are calculated based on the point sys
     | 1 | 0                 |
     | 2+ | 3 * 2 ^ (n - 2)  |
 - All Clear Bonus: 3600 points
-- The number of garbage Puyos sent to the opponent is calculated by the following formula:
+- The number of garbage puyos sent to the opponent is calculated by the following formula:
   - floor((Points) / 70)
 
 ## How to Create Chains
